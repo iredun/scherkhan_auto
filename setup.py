@@ -1,53 +1,57 @@
 import setuptools
 
-with open('README.md', 'r', encoding='utf-8') as fh:
+application_dependencies = []
+prod_dependencies = []
+test_dependencies = ["pytest", "pytest-env", "pytest-cov", "requests-mock"]
+lint_dependencies = ["flake8", "flake8-docstrings", "black", "isort"]
+docs_dependencies = []
+dev_dependencies = test_dependencies + lint_dependencies + docs_dependencies
+deploy_dependencies = ["requests"]
+
+
+with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='example_pypi_package',
-    author='Tom Chen',
-    author_email='tomchen.org@gmail.com',
-    description='Example PyPI (Python Package Index) Package',
-    keywords='example, pypi, package',
+    name="scherkhan_auto",
+    author="Ivan Redun",
+    author_email="redunivan@yandex.ru",
+    description="Scher-Khan Auto API client",
+    keywords="scherkhan, api client",
     long_description=long_description,
-    long_description_content_type='text/markdown',
-    url='https://github.com/tomchen/example_pypi_package',
+    long_description_content_type="text/markdown",
+    url="https://github.com/iredun/scherkhan_auto",
     project_urls={
-        'Documentation': 'https://github.com/tomchen/example_pypi_package',
-        'Bug Reports':
-        'https://github.com/tomchen/example_pypi_package/issues',
-        'Source Code': 'https://github.com/tomchen/example_pypi_package',
-        # 'Funding': '',
-        # 'Say Thanks!': '',
+        "Documentation": "https://github.com/iredun/scherkhan_auto",
+        "Bug Reports": "https://github.com/iredun/scherkhan_auto/issues",
+        "Source Code": "https://github.com/iredun/scherkhan_auto",
     },
-    package_dir={'': 'src'},
-    packages=setuptools.find_packages(where='src'),
+    package_dir={"": "src"},
+    packages=setuptools.find_packages(where="src"),
     classifiers=[
-        # see https://pypi.org/classifiers/
-        'Development Status :: 5 - Production/Stable',
-
-        'Intended Audience :: Developers',
-        'Topic :: Software Development :: Build Tools',
-
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
-        'Programming Language :: Python :: 3 :: Only',
-        'License :: OSI Approved :: MIT License',
-        'Operating System :: OS Independent',
+        "Development Status :: 5 - Production/Stable",
+        "Intended Audience :: Developers",
+        "Topic :: Internet :: WWW/HTTP",
+        "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3 :: Only",
+        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+        "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
-    # install_requires=['Pillow'],
+    python_requires=">=3.6",
+    install_requires=application_dependencies,
     extras_require={
-        'dev': ['check-manifest'],
-        # 'test': ['coverage'],
+        "production": prod_dependencies,
+        "test": test_dependencies,
+        "lint": lint_dependencies,
+        "docs": dev_dependencies,
+        "dev": dev_dependencies,
+        "deploy": deploy_dependencies,
     },
-    # entry_points={
-    #     'console_scripts': [  # This can provide executable scripts
-    #         'run=examplepy:main',
-    # You can execute `run` in bash to run `main()` in src/examplepy/__init__.py
-    #     ],
-    # },
+    include_package_data=True,
+    zip_safe=False,
 )
