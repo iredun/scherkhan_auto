@@ -1,12 +1,13 @@
 import setuptools
 
-application_dependencies = []
-prod_dependencies = []
+prod_dependencies = ["pydantic", "requests", "websocket-client", "rel"]
 test_dependencies = ["pytest", "pytest-env", "pytest-cov", "requests-mock"]
 lint_dependencies = ["flake8", "flake8-docstrings", "black", "isort"]
 docs_dependencies = []
-dev_dependencies = test_dependencies + lint_dependencies + docs_dependencies
-deploy_dependencies = ["requests"]
+dev_dependencies = (
+    test_dependencies + lint_dependencies + docs_dependencies + prod_dependencies
+)
+deploy_dependencies = []
 
 
 with open("README.md", "r", encoding="utf-8") as fh:
@@ -29,12 +30,11 @@ setuptools.setup(
     package_dir={"": "src"},
     packages=setuptools.find_packages(where="src"),
     classifiers=[
-        "Development Status :: 5 - Production/Stable",
+        "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
@@ -42,8 +42,8 @@ setuptools.setup(
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.6",
-    install_requires=application_dependencies,
+    python_requires=">=3.7",
+    install_requires=prod_dependencies,
     extras_require={
         "production": prod_dependencies,
         "test": test_dependencies,
