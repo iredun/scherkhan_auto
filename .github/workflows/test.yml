@@ -22,7 +22,7 @@ jobs:
         run: pip install flake8 black
       - name: Lint
         run: |
-          flake8 --ignore=E501,E203,W503 --exclude=venv
+          flake8 --ignore=E501,E203,W503,F401 --exclude=venv
           black --check --exclude=venv .
   build:
     runs-on: ubuntu-latest
