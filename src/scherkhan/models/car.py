@@ -12,8 +12,8 @@ class Car(BaseModel):
     registration_certificate_id: str
     vin: str
     is_vin_editable: bool
-    photo: str = None
-    fuel_type: str
+    photo: str | None
+    fuel_type: int
     fuel_tank_capacity: int
     fuel_percent_a: int
     fuel_percent_b: int

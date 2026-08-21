@@ -10,7 +10,6 @@ class Device(BaseModel):
     created: datetime
     is_autostart_available: bool
     pin: str
-    pin: str
     msisdn: str
     operator: int
     currency: str
@@ -18,4 +17,4 @@ class Device(BaseModel):
     emergency: str
     is_mark_available: bool
     has_internet_connection: bool
-    branding_id: int = None
+    branding_id: int | None

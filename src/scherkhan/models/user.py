@@ -15,7 +15,7 @@ class User(BaseModel):
     last_name: str
     patronymic: str
     gender: str
-    birth_date: date
+    birth_date: date | None
     locale: str
     time_zone: str
     driver_license: str
